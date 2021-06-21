@@ -1,3 +1,50 @@
-﻿h1 {
-    color: greenyellow;
+﻿body{
+
+    margin: 0;
+    height: 100vh;
+    width: 100wh;
+    display: flex;
+    flex-direction: column;
 }
+
+.navbar{
+    background-color: rebeccapurple;
+    height: 50px;
+    z-index: 100;
+    box-shadow: 0 1px 2px 0 #333;
+}
+
+.main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidemenu {
+    background-color: mediumpurple;
+    width: 100px;
+    z-index: 50;
+    box-shadow: 1px 0 2px 0 #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-button {
+    border: 1px solid black;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px 1px #222;
+    background-color: rebeccapurple;
+}
+
+.chat{
+    background-color: darkseagreen;
+    flex-grow: 1;
+}
+

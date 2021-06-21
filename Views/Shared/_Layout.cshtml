@@ -9,10 +9,21 @@
 </head>
 <body>
 
-    <div>
-        @RenderBody()
+    <div class="navbar">
+
     </div>
 
+
+    <div class="main">
+        <div class="sidemenu">
+            <a class="room-button" href="#">
+                Room
+            </a>
+        </div>
+        <div class="chat">
+            @RenderBody()
+        </div>
+    </div>
 </body>
 
 </html>
