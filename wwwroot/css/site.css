@@ -36,12 +36,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 1rem;
-    height: 80px;
+    margin: 0.75rem 1rem 0;
+    height: 70px;
     border-radius: 10px;
-    box-shadow: 0 1px 3px 1px #222;
+    box-shadow: 0 1px 3px 1px #444;
     background-color: rebeccapurple;
 }
+
+    .room-button:hover {
+        box-shadow: 0 2px 3px 1px #222;
+    }
+
+    .room-button > strong {
+        font-size: 45px;
+    }
 
 .chat{
     background-color: darkseagreen;
