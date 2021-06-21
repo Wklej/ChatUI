@@ -9,7 +9,7 @@
 
 .navbar{
     background-color: rebeccapurple;
-    height: 50px;
+    min-height: 50px;
     z-index: 100;
     box-shadow: 0 1px 2px 0 #333;
 }
@@ -22,7 +22,7 @@
 
 .sidemenu {
     background-color: mediumpurple;
-    width: 100px;
+    min-width: 100px;
     z-index: 50;
     box-shadow: 1px 0 2px 0 #333;
     display: flex;
@@ -54,5 +54,55 @@
 .chat{
     background-color: darkseagreen;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 92vh;
 }
+
+.chat-body {
+    background-color: #eee;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;    
+    padding-bottom: 1rem;
+    overflow: auto;
+}
+
+.chat-input {
+    min-height: 100px;
+    z-index: 25;
+    box-shadow: 0 -1px 2px 0 #333;
+    background-color: grey;
+}
+
+.message{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.2rem;
+}
+
+.message:first-child{
+    margin-top: auto;
+}
+
+.message > * {
+    padding: 0.2rem;
+}
+
+.message > header {
+    min-width: 100px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.message > p {
+    margin: 0;
+    flex-grow: 5;
+}
+
+.message > footer{
+    text-align: center;
+    min-width: 70px;
+}
+
 
