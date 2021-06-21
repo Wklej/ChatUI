@@ -27,6 +27,9 @@ namespace ChatUI
         {
             app.UseDeveloperExceptionPage();
 
+            app.UseStaticFiles();
+
+
             app.UseMvcWithDefaultRoute();
         }
     }
