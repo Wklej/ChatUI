@@ -20,6 +20,7 @@ namespace ChatUI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseUrls("http://localhost:3000");
                     webBuilder.UseStartup<Startup>();
                 });
     }
