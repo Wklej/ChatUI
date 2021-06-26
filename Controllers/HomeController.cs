@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace ChatUI.Controllers
 {
     [Authorize]
-    public class HomeController: Controller
+    public class HomeController : Controller
     {
         private AppDbContext _context;
 
@@ -30,7 +30,7 @@ namespace ChatUI.Controllers
 
             return View(chats);
         }
-        
+
         public IActionResult Find()
         {
             var users = _context.Users
@@ -38,30 +38,6 @@ namespace ChatUI.Controllers
                 .ToList();
 
             return View(users);
-        }
-
-        public async Task<IActionResult> CreatePrivateRoom(string userId)
-        {
-            var chat = new Chat
-            {
-                Type = ChatType.PRIV
-            };
-
-            chat.Users.Add(new ChatUser
-            {
-                UserId = userId
-            });
-
-            chat.Users.Add(new ChatUser
-            {
-                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
-            });
-
-            _context.Chats.Add(chat);
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Chat", new { id = chat.Id });
         }
 
         [HttpGet("{id}")]
@@ -72,7 +48,7 @@ namespace ChatUI.Controllers
                 .FirstOrDefault(x => x.Id == id);
 
             return View(chat);
-        }        
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int chatId, string message)

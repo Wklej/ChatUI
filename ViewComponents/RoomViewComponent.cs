@@ -1,4 +1,5 @@
 ﻿using ChatUI.DB;
+using ChatUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,7 +21,7 @@ namespace ChatUI.ViewComponents
             var userid = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var chats = _context.ChatUsers
                 .Include(x => x.Chat)
-                .Where(x => x.UserId == userid)
+                .Where(x => x.UserId == userid && x.Chat.Type == ChatType.ROOM)
                 .Select(x => x.Chat)
                 .ToList();
 
