@@ -1,5 +1,6 @@
 ﻿using ChatUI.DB;
 using ChatUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChatUI.Controllers
 {
+    [Authorize]
     public class HomeController: Controller
     {
         private AppDbContext _context;
