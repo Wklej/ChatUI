@@ -1,8 +1,10 @@
 ﻿using ChatUI.DB;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ChatUI.ViewComponents
@@ -14,8 +16,13 @@ namespace ChatUI.ViewComponents
         public RoomViewComponent(AppDbContext context) => _context = context;
 
         public IViewComponentResult Invoke()
-        {
-            var chats = _context.Chats.ToList();
+        { 
+            var userid = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var chats = _context.ChatUsers
+                .Include(x => x.Chat)
+                .Where(x => x.UserId == userid)
+                .Select(x => x.Chat)
+                .ToList();
 
             return View(chats);
         }
