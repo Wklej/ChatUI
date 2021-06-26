@@ -18,8 +18,19 @@ namespace ChatUI.Controllers
 
         public HomeController(AppDbContext context) => _context = context;
 
-        public IActionResult index() => View();
+        public IActionResult index()
+        {
+            var userid = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            var chats = _context.Chats
+                .Include(x => x.Users)
+                .Where(x => !x.Users
+                    .Any(y => y.UserId == userid))
+                .ToList();
+
+            return View(chats);
+        }
+        
         [HttpGet("{id}")]
         public IActionResult Chat(int id)
         {
@@ -71,7 +82,7 @@ namespace ChatUI.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> JoinRoom(int id)
         {
             var chatUser = new ChatUser
@@ -85,7 +96,7 @@ namespace ChatUI.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Chat", "Home", new { id = id });
         }
     }
 }

@@ -1,28 +1,11 @@
-﻿
-<div class="chat-body">
-   
-    <div class="message">
-        <header>Alice:</header>
-        <p>Test msg</p>
-        <footer>22:22</footer>
-    </div>
-    <div class="message">
-        <header>Bob:</header>
-        <p>Test msg bobs</p>
-        <footer>22:23</footer>
-    </div>
-    <div class="message">
-        <header>Bob:</header>
-        <p>
-            TEST WIDTH TEST WIDTH TEST WIDTH TEST WIDTH
-            TEST WIDTH TEST WIDTH TEST WIDTH
-            TEST WIDTH TEST WIDTH TEST WIDTHTEST WIDTH
-        </p>
-        <footer>22:23</footer>
-    </div>
-</div>
+﻿@model IEnumerable<Chat>
 
-<div class="chat-input">
-    <input type="text" />
-    <button>Write</button>
+<div class="chat-body">
+    @foreach (var chat in Model)
+    {
+        <a class="room-button" asp-controller="Home" asp-action="JoinRoom" asp-route-id="@chat.Id">
+            @chat.Name
+        </a>
+    }
+
 </div>
