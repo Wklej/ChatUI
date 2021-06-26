@@ -31,6 +31,15 @@ namespace ChatUI.Controllers
             return View(chats);
         }
         
+        public IActionResult Find()
+        {
+            var users = _context.Users
+                .Where(x => x.Id != User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                .ToList();
+
+            return View(users);
+        }
+
         [HttpGet("{id}")]
         public IActionResult Chat(int id)
         {

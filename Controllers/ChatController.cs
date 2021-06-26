@@ -33,6 +33,7 @@ namespace ChatUI.Controllers
             return Ok();
         }
 
+        [HttpPost("[action]")]
         public async Task<IActionResult> SendMessage(string message, string roomName,
             int chatId, [FromServices] AppDbContext context)
         {
@@ -48,7 +49,11 @@ namespace ChatUI.Controllers
 
             await context.SaveChangesAsync();
 
-            await _chat.Clients.Group(roomName).SendAsync("ReceiveMessage", msg);
+            await _chat.Clients.Group(roomName).SendAsync("ReceiveMessage", new { 
+                Text = msg.Text,
+                Name = msg.Name,
+                Timestamp = msg.Timestamp.ToString("dd/MM/yyyy hh:mm:ss")
+            });
             return Ok();
         }
     }

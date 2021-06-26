@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-
+using ChatUI.Hubs;
 
 namespace ChatUI
 {
@@ -55,8 +55,8 @@ namespace ChatUI
 
             app.UseAuthentication();
 
-            app.UseSignalR(routes => { 
-            
+            app.UseSignalR(routes => {
+                routes.MapHub<ChatHub>("/chatHub");
             });
 
             app.UseMvcWithDefaultRoute();
