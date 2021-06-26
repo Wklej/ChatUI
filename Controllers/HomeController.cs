@@ -40,6 +40,30 @@ namespace ChatUI.Controllers
             return View(users);
         }
 
+        public async Task<IActionResult> CreatePrivateRoom(string userId)
+        {
+            var chat = new Chat
+            {
+                Type = ChatType.PRIV
+            };
+
+            chat.Users.Add(new ChatUser
+            {
+                UserId = userId
+            });
+
+            chat.Users.Add(new ChatUser
+            {
+                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
+            });
+
+            _context.Chats.Add(chat);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Chat", new { id = chat.Id });
+        }
+
         [HttpGet("{id}")]
         public IActionResult Chat(int id)
         {
