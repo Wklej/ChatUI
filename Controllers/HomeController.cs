@@ -36,7 +36,7 @@ namespace ChatUI.Controllers
             {
                 ChatId = chatId,
                 Text = message,
-                Name = "Default",
+                Name = User.Identity.Name,
                 Timestamp = DateTime.Now
             };
 
