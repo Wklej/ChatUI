@@ -22,9 +22,12 @@
 
 @section scripts{
 
-    <script src="~/js/signalr.min.js">
+    <script src="~/js/signalr.min.js"></script>
 
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chatHub")
+            .build();
     </script>
-
 
 }
