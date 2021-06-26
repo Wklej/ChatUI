@@ -33,7 +33,13 @@ namespace ChatUI
                 options.UseSqlServer(connectionString)
             );
             
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 5;
+            })
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -46,6 +52,7 @@ namespace ChatUI
 
             app.UseStaticFiles();
 
+            app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
         }
